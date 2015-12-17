@@ -1,5 +1,6 @@
 package ch.hevs.aipu.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.menu = menu;
         return true;
     }
 
@@ -48,5 +52,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void about(MenuItem item) {
+        Intent intent = new Intent(this, About.class);
+        startActivity(intent);
+        menu.clear();
+        onCreateOptionsMenu(menu);
+    }
+
+    public void news(View view) {
+        Intent intent = new Intent(this, News.class);
+        startActivity(intent);
     }
 }
