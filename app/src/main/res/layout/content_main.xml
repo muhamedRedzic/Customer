@@ -29,7 +29,7 @@
                 android:id="@+id/imageButton1"
                 android:layout_gravity="start"
                 android:src="@drawable/news"
-                android:background="@android:color/white"
+                android:background="@layout/selector"
                 android:onClick="news" />
             <Space
                 android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
                 android:id="@+id/imageButton2"
                 android:layout_gravity="start"
                 android:src="@drawable/easel"
-                android:background="@android:color/white"/>
+                android:background="@layout/selector"/>
         </LinearLayout>
 
 
@@ -55,7 +55,7 @@
                 android:id="@+id/imageButton3"
                 android:layout_gravity="start"
                 android:src="@drawable/map"
-                android:background="@android:color/white"/>
+                android:background="@layout/selector"/>
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -66,7 +66,7 @@
                 android:id="@+id/imageButton4"
                 android:layout_gravity="start"
                 android:src="@drawable/compose"
-                android:background="@android:color/white"/>
+                android:background="@layout/selector"/>
         </LinearLayout>
 
         <LinearLayout
@@ -79,7 +79,7 @@
                 android:id="@+id/imageButton5"
                 android:layout_gravity="start"
                 android:src="@drawable/location"
-                android:background="@android:color/white"/>
+                android:background="@layout/selector"/>
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -90,7 +90,7 @@
                 android:id="@+id/imageButton6"
                 android:layout_gravity="start"
                 android:src="@drawable/calenda"
-                android:background="@android:color/white" />
+                android:background="@layout/selector" />
         </LinearLayout>
 
 
@@ -104,7 +104,7 @@
                 android:id="@+id/imageButton7"
                 android:layout_gravity="start"
                 android:src="@drawable/art"
-                android:background="@android:color/white"/>
+                android:background="@layout/selector"/>
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -115,7 +115,7 @@
                 android:id="@+id/imageButton8"
                 android:layout_gravity="start"
                 android:src="@drawable/art"
-                android:background="@android:color/white"/>
+                android:background="@layout/selector"/>
         </LinearLayout>
     </GridLayout>
 </RelativeLayout>
