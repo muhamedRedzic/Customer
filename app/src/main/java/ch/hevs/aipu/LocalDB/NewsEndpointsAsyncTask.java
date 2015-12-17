@@ -16,6 +16,7 @@ import java.util.List;
 import ch.hevs.aipu.admin.entity.newsendpoint.Newsendpoint;
 import ch.hevs.aipu.admin.entity.newsendpoint.model.News;
 
+
 /**
  * Created by Matthieu on 10.12.2015.
  */
@@ -23,7 +24,7 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
 
 
     private static final String TAG = NewsEndpointsAsyncTask.class.getName();
-    private static Newsendpoint myApiService = null;
+    private static NewsEndpoint myApiService = null;
     private Context context;
 
 
@@ -36,7 +37,7 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
         if(myApiService == null){
             // Only do this once
             Newsendpoint.Builder builder = new Newsendpoint.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl("https://cence-6452.appspot.com/_ah/apionfer/");
+                    .setRootUrl("https://conference-6452.appspot.com/_ah/apionfer/");
 
             myApiService = builder.build();
         }
