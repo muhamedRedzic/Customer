@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void about(MenuItem item) {
-        Intent intent = new Intent(this, About.class);
+        Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
         menu.clear();
         onCreateOptionsMenu(menu);
     }
 
     public void news(View view) {
-        Intent intent = new Intent(this, News.class);
+        Intent intent = new Intent(this, NewsActivity.class);
         startActivity(intent);
     }
 }

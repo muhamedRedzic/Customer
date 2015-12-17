@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".About"
+            android:name=".AboutActivity"
             android:label="@string/title_activity_about"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,7 +28,7 @@
                 android:value="ch.hevs.aipu.customer.MainActivity" />
         </activity>
         <activity
-            android:name=".News"
+            android:name=".NewsActivity"
             android:label="@string/title_activity_news"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

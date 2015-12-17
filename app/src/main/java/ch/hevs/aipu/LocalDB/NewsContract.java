@@ -13,7 +13,7 @@ public class NewsContract {
 
     public static abstract class NewsEntry implements BaseColumns {
         //Table name
-        public static final String TABLE_NEWS = "News";
+        public static final String TABLE_NEWS = "NewsActivity";
 
         //Patient Column names
         public static final String KEY_ID = "id";
