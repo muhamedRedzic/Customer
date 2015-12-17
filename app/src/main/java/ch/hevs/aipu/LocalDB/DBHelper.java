@@ -19,6 +19,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(NewsContract.NewsEntry.CREATE_TABLE_NEWS);
         db.execSQL(StakeholderContract.StakeholdersEntry.CREATE_TABLE_STAKEHOLDERS);
+        db.execSQL(ConferenceContract.ConferenceEntry.CREATE_TABLE_CONFERENCE);
+        db.execSQL(JoinContract.JoinEntry.CREATE_TABLE_JOIN);
 
     }
 
