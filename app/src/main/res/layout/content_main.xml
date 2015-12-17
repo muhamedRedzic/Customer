@@ -79,7 +79,8 @@
                 android:id="@+id/imageButton5"
                 android:layout_gravity="start"
                 android:src="@drawable/location"
-                android:background="@layout/selector"/>
+                android:background="@layout/selector"
+                android:onClick="maps"/>
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

@@ -65,4 +65,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewsActivity.class);
         startActivity(intent);
     }
+
+    public void maps(View view) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
 }
