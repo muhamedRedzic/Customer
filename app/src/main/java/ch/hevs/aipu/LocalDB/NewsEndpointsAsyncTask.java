@@ -24,7 +24,7 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
 
 
     private static final String TAG = NewsEndpointsAsyncTask.class.getName();
-    private static NewsEndpoint myApiService = null;
+    private static Newsendpoint myApiService = null;
     private Context context;
 
 
