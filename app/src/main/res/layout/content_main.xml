@@ -41,7 +41,8 @@
                 android:id="@+id/imageButton2"
                 android:layout_gravity="start"
                 android:src="@drawable/easel"
-                android:background="@layout/selector"/>
+                android:background="@layout/selector"
+                android:onClick="conferences" />
         </LinearLayout>
 
 
@@ -55,7 +56,8 @@
                 android:id="@+id/imageButton3"
                 android:layout_gravity="start"
                 android:src="@drawable/map"
-                android:background="@layout/selector"/>
+                android:background="@layout/selector"
+                android:onClick="plan" />
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
