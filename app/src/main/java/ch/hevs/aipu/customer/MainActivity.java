@@ -1,6 +1,7 @@
 package ch.hevs.aipu.customer;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -71,5 +72,10 @@ public class MainActivity extends AppCompatActivity {
     public void plan(View view) {
         Intent intent = new Intent(this, PlanActivity.class);
         startActivity(intent);
+    }
+
+    public void feedback(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+        startActivity(browserIntent);
     }
 }
