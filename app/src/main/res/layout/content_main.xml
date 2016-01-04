@@ -19,89 +19,102 @@
         android:columnCount="1"
         >
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:stretchColumns="*">
 
-            <Button
-                android:layout_width="170dp"
-                android:layout_height="100dp"
-                android:id="@+id/Button1"
-                android:layout_gravity="start"
-                android:drawableTop="@drawable/news"
-                android:background="@layout/selector"
-                android:onClick="news"
-                android:text="News"/>
+            <TableRow
+                android:id="@+id/first_row"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/ButtonNews"
+                    android:drawableTop="@drawable/news"
+                    android:background="@layout/selector"
+                    android:onClick="news"
+                    android:text="News"/>
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/ButtonConferences"
+                    android:drawableTop="@drawable/easel"
+                    android:background="@layout/selector"
+                    android:onClick="conferences"
+                    android:text="Conferences"/>
+                </TableRow>
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-            <Button
-                android:layout_width="170dp"
-                android:layout_height="100dp"
-                android:id="@+id/Button2"
-                android:layout_gravity="start"
-                android:drawableTop="@drawable/easel"
-                android:background="@layout/selector"
-                android:onClick="conferences"
-                android:text="Conferences"/>
-        </LinearLayout>
-
-        <LinearLayout
+        </TableLayout>
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:layout_width="170dp"
-                android:layout_height="100dp"
-                android:id="@+id/Button3"
-                android:layout_gravity="start"
-                android:drawableTop="@drawable/map"
-                android:background="@layout/selector"
-                android:onClick="plan"
-                android:text="Plan"/>
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-            <Button
-                android:layout_width="170dp"
-                android:layout_height="100dp"
-                android:id="@+id/Button4"
-                android:layout_gravity="start"
-                android:drawableTop="@drawable/compose"
-                android:background="@layout/selector"
-                android:onClick="feedback"
-                android:text="Feedback"/>
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:stretchColumns="*">
 
-        <LinearLayout
+            <TableRow
+                android:id="@+id/second_row"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/ButtonPlan"
+                    android:drawableTop="@drawable/map"
+                    android:background="@layout/selector"
+                    android:onClick="plan"
+                    android:text="Plan"/>
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/ButtonFeedback"
+                    android:drawableTop="@drawable/compose"
+                    android:background="@layout/selector"
+                    android:onClick="feedback"
+                    android:text="Feedback"/>
+            </TableRow>
+
+        </TableLayout>
+
+
+        <TableLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:stretchColumns="*">
+
+        <TableRow
+            android:id="@+id/third_row"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1" >
             <Button
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
-                android:id="@+id/Button5"
-                android:layout_gravity="start"
+                android:id="@+id/ButtonMaps"
                 android:drawableTop="@drawable/location"
                 android:background="@layout/selector"
                 android:onClick="maps"
-                android:text="Maps"/>
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:text="Maps" />
             <Button
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
-                android:id="@+id/Button6"
-                android:layout_gravity="start"
+                android:id="@+id/ButtonCalendar"
                 android:drawableTop="@drawable/calenda"
                 android:background="@layout/selector"
                 android:text="Personal Calendar"/>
-        </LinearLayout>
+            </TableRow>
+        </TableLayout>
     </GridLayout>
+
 </RelativeLayout>
