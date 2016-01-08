@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gesture-image="http://schemas.polites.com/android"
+    android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ch.hevs.aipu.customer.PlanActivity"
-    tools:showIn="@layout/activity_plan"
-    android:clickable="true"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:id="@+id/root">
-
-    <ImageView
-        android:id="@+id/imageViewPlan"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:src="@drawable/plan"
-        android:scaleType="center"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-</RelativeLayout>
+    android:orientation="vertical"
+    android:background="#000000">
+    <com.polites.android.GestureImageView
+        android:id="@+id/image"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        gesture-image:min-scale="0.75"
+        gesture-image:max-scale="10.0"
+        android:src="@drawable/plan"/>
+</LinearLayout>
