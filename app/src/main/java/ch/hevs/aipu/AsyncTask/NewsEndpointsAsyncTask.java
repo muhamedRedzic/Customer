@@ -73,7 +73,6 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
         //dbHelper.dropTableNews();
 
        for (News n:news) {
-
            dbHelper.addNews(n.getTitle(),n.getText(), n.getPublished().toString());
        }
 
