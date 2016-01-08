@@ -115,6 +115,38 @@
                 android:text="Personal Calendar"/>
             </TableRow>
         </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:id="@+id/third_row"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/ButtonOrganizers"
+                    android:drawableTop="@drawable/profle"
+                    android:background="@layout/selector"
+                    android:onClick="organizers"
+                    android:text="Organizers" />
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/ButtonPartners"
+                    android:drawableTop="@drawable/contacts"
+                    android:background="@layout/selector"
+                    android:onClick="partners"
+                    android:text="Partners"/>
+            </TableRow>
+        </TableLayout>
     </GridLayout>
 
 </RelativeLayout>

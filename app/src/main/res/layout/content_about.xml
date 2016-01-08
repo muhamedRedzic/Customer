@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Copyright &#169; HEVS \n\nChristoph Blättler\nMatthieu Dayer\nMuhamed Redzic\nYann Pochon"
+            android:text="Copyright &#169; HEVS \n\nChristoph Blättler\nMatthieu Dayer\nYann Pochon\nMuhamed Redzic"
             android:id="@+id/textViewDevs"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>

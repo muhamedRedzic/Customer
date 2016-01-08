@@ -80,4 +80,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FeedbackActivity.class);
         startActivity(intent);
     }
+
+    public void partners(View view) {
+        Intent intent = new Intent(this, PartnersActivity.class);
+        startActivity(intent);
+    }
+
+    public void organizers(View view) {
+        Intent intent = new Intent(this, OrganizersActivity.class);
+        startActivity(intent);
+    }
 }
