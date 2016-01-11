@@ -39,12 +39,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public void addNews(String title, String text, String date) {
+    public void addNews(Long id, String title, String text, String date) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
 
         ContentValues values = new ContentValues();
+        values.put(NewsContract.NewsEntry.KEY_ID, id);
         values.put(NewsContract.NewsEntry.KEY_TITLE, title);
         values.put(NewsContract.NewsEntry.KEY_TEXT, text);
         values.put(NewsContract.NewsEntry.KEY_PUBLICATION, date);
@@ -82,6 +83,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public  void dropTableNews(){
 
         SQLiteDatabase db = this.getWritableDatabase();
+
+
         db.execSQL("DROP TABLE IF EXISTS " + NewsContract.NewsEntry.TABLE_NEWS);
         db.close();
 
@@ -101,6 +104,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if(c.moveToFirst()){
             for(int i=0; i< c.getCount();i++){
                 News n = new News();
+                n.setId(c.getLong(c.getColumnIndex(NewsContract.NewsEntry.KEY_ID)));
                 n.setTitle(c.getString(c.getColumnIndex(NewsContract.NewsEntry.KEY_TITLE)));
                 n.setText(c.getString(c.getColumnIndex(NewsContract.NewsEntry.KEY_TEXT)));
                 n.setPublished(new DateTime(c.getString(c.getColumnIndex(NewsContract.NewsEntry.KEY_PUBLICATION))));
@@ -114,6 +118,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean checkIfNewsExist (long id){
+
+        List<News> news = getListNews();
+
+        for (News n : news) {
+
+           // Log.i("check", "Name: " + n.getId());
+            if(id==n.getId().longValue())
+                return false;
+
+        }
+        return true;
+    }
 
 
 

@@ -60,20 +60,30 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
     @Override
     protected void onPostExecute(List<News> news) {
 
-        if(news != null) {
+       /* if(news != null) {
             for (News seller : news) {
                 Log.i(TAG, "Name: " + seller.getTitle());
             }
         }
-
+*/
 
         DBHelper dbHelper = new DBHelper(this.context);
 
+
+
        // dbHelper.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + NewsContract.NewsEntry.TABLE_NEWS);
-        //dbHelper.dropTableNews();
+
+
+
 
        for (News n:news) {
-           dbHelper.addNews(n.getTitle(),n.getText(), n.getPublished().toString());
+
+           //Log.i(TAG, "Name: " + n.getId());
+           if(dbHelper.checkIfNewsExist(n.getId())) {
+
+               dbHelper.addNews(n.getId(), n.getTitle(), n.getText(), n.getPublished().toString());
+
+           }
        }
 
 

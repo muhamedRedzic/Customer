@@ -28,7 +28,7 @@ public class ConferenceContract {
         public static final String CREATE_TABLE_CONFERENCE = "CREATE TABLE "
                 + TABLE_CONFERENCE
                 + "("
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_ID + " INTEGER NOT NULL, "
                 + KEY_TITLE + " TEXT NOT NULL, "
                 + KEY_ROOM + " TEXT NOT NULL, "
                 + KEY_START + " TEXT NOT NULL, "

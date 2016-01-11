@@ -27,7 +27,7 @@ public class NewsContract {
         public static final String CREATE_TABLE_NEWS = "CREATE TABLE "
                 + TABLE_NEWS
                 + "("
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_ID + " BIGINT PRIMARY KEY , "
                 + KEY_TITLE + " TEXT NOT NULL, "
                 + KEY_TEXT + " TEXT NOT NULL, "
                 + KEY_PUBLICATION + " TEXT NOT NULL);";
