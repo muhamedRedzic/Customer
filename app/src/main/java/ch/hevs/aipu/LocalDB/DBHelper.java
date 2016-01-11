@@ -80,12 +80,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public  void dropTableNews(){
+    public  void cleanNewsTable(){
 
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        db.execSQL("DROP TABLE IF EXISTS " + NewsContract.NewsEntry.TABLE_NEWS);
+        db.execSQL("DELETE FROM " + NewsContract.NewsEntry.TABLE_NEWS);
         db.close();
 
 

@@ -69,7 +69,7 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
 
         DBHelper dbHelper = new DBHelper(this.context);
 
-
+        dbHelper.cleanNewsTable();
 
        // dbHelper.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + NewsContract.NewsEntry.TABLE_NEWS);
 
