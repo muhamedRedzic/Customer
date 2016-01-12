@@ -201,6 +201,40 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public List<Conference> getListConference(){
+
+        List<Conference> conferences = new ArrayList<Conference>() ;
+
+        String querySelectAll = "SELECT * FROM " + ConferenceContract.ConferenceEntry.TABLE_CONFERENCE;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor c = db.rawQuery(querySelectAll, null);
+
+        if(c.moveToFirst()){
+            for(int i=0; i< c.getCount();i++){
+                Conference conf = new Conference();
+                Long l = c.getLong(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_ID));
+                ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key k = new ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key();
+                k.setId(l);
+                conf.setId(k);
+                conf.setTitle(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_TITLE)));
+                conf.setRoom(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_ROOM)));
+                conf.setStart(new DateTime(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_START))));
+                conf.setEnd(new DateTime(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_END))));
+
+                conferences.add(conf);
+                c.move(1);
+            }
+
+        }
+
+        return conferences;
+
+    }
+
+
+
     public List<Stakeholder> getListStakeholdersByType(String type){
 
         List<Stakeholder> stakeholders = new ArrayList<Stakeholder>() ;
