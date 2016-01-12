@@ -69,7 +69,7 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
 
         DBHelper dbHelper = new DBHelper(this.context);
 
-        dbHelper.cleanNewsTable();
+
 
        // dbHelper.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + NewsContract.NewsEntry.TABLE_NEWS);
 
@@ -79,11 +79,11 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
        for (News n:news) {
 
            //Log.i(TAG, "Name: " + n.getId());
-          // if(dbHelper.checkIfNewsExist(n.getId())) {
+           if(dbHelper.checkIfNewsExist(n.getId())) {
 
                dbHelper.addNews(n.getId(), n.getTitle(), n.getText(), n.getPublished().toString());
 
-           //}
+           }
        }
 
 
