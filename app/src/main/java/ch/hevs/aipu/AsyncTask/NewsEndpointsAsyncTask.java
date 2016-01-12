@@ -32,7 +32,6 @@ public class NewsEndpointsAsyncTask extends AsyncTask<Void,Void, List<News>> {
     }
 
 
-
     @Override
     protected List<News> doInBackground(Void... params) {
         if(myApiService == null){

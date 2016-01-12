@@ -31,7 +31,6 @@ public class StakeholderEndpointsAsyncTask extends AsyncTask<Void,Void, List<Sta
     }
 
 
-
     @Override
     protected List<Stakeholder> doInBackground(Void... params) {
         if(myApiService == null){

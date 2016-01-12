@@ -26,7 +26,6 @@ public class ConferenceEndpointsAsyncTask extends AsyncTask<Void,Void, List<Conf
     private static Conferenceendpoint myApiService = null;
     private Context context;
 
-
     public ConferenceEndpointsAsyncTask(Context context){
         this.context = context;
     }
