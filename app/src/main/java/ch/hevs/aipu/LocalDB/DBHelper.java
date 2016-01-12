@@ -11,7 +11,10 @@ import com.google.api.client.util.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.hevs.aipu.admin.entity.conferenceendpoint.model.Conference;
 import ch.hevs.aipu.admin.entity.newsendpoint.model.News;
+import ch.hevs.aipu.admin.entity.stakeholderendpoint.model.Key;
+import ch.hevs.aipu.admin.entity.stakeholderendpoint.model.Stakeholder;
 
 /**
  * Created by Matthieu on 07.12.2015.
@@ -58,9 +61,65 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void addConference(Conference conference) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        ContentValues values = new ContentValues();
+        values.put(ConferenceContract.ConferenceEntry.KEY_ID, conference.getId().getId());
+        values.put(ConferenceContract.ConferenceEntry.KEY_TITLE, conference.getTitle());
+        values.put(ConferenceContract.ConferenceEntry.KEY_ROOM, conference.getRoom());
+        values.put(ConferenceContract.ConferenceEntry.KEY_START, conference.getStart().toString());
+        values.put(ConferenceContract.ConferenceEntry.KEY_END, conference.getEnd().toString());
+
+
+        db.insert(ConferenceContract.ConferenceEntry.TABLE_CONFERENCE, null, values);
+
+        db.close();
+
+
+
+    }
+
+    public void addStakeholder(Stakeholder stakeholder) {
+
+       /* List<Key> conferences = stakeholder.getConferences();
+
+        String listIntoString = null;
+        //Log.i("string", conferences.get(0).getId().toString());
+        if(conferences!=null) {
+            for (Key k : conferences) {
+
+                listIntoString = listIntoString + k.getId().toString() + ", ";
+            }
+        }
+*/
+        //Log.i("string", listIntoString);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        ContentValues values = new ContentValues();
+        values.put(StakeholderContract.StakeholdersEntry.KEY_ID, stakeholder.getId().getId());
+        values.put(StakeholderContract.StakeholdersEntry.KEY_NAME,stakeholder.getName() );
+        values.put(StakeholderContract.StakeholdersEntry.KEY_TYPE,stakeholder.getType() );
+        values.put(StakeholderContract.StakeholdersEntry.KEY_EMAIL,stakeholder.getEmail());
+        values.put(StakeholderContract.StakeholdersEntry.KEY_WEBSITE,stakeholder.getWebsite() );
+        //values.put(StakeholderContract.StakeholdersEntry.KEY_CONFERENCES, listIntoString);
+
+
+        db.insert(StakeholderContract.StakeholdersEntry.TABLE_STAKEHOLDERS, null, values);
+
+        db.close();
+
+
+
+    }
+
     public List<String> getNews() {
 
-        List<String> manufacturers = new ArrayList<String>() ;
+        List<String> news = new ArrayList<String>() ;
 
         String querySelectAll = "SELECT * FROM " + NewsContract.NewsEntry.KEY_TITLE;
 
@@ -70,15 +129,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if(c.moveToFirst()){
             for(int i=0; i< c.getCount();i++){
-                manufacturers.add(c.getString(c.getColumnIndex(NewsContract.NewsEntry.KEY_TITLE)));
+                news.add(c.getString(c.getColumnIndex(NewsContract.NewsEntry.KEY_TITLE)));
                 c.move(1);
             }
 
         }
 
-        return manufacturers;
+        return news;
 
     }
+
+
 
     public  void cleanNewsTable(){
 
@@ -86,6 +147,28 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         db.execSQL("DELETE FROM " + NewsContract.NewsEntry.TABLE_NEWS);
+        db.close();
+
+
+    }
+
+    public  void cleanConferenceTable(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        db.execSQL("DELETE FROM " + ConferenceContract.ConferenceEntry.TABLE_CONFERENCE);
+        db.close();
+
+
+    }
+
+    public  void cleanStakeholderTable(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        db.execSQL("DELETE FROM " + StakeholderContract.StakeholdersEntry.TABLE_STAKEHOLDERS);
         db.close();
 
 
@@ -115,6 +198,38 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return news;
+
+    }
+
+    public List<Stakeholder> getListStakeholdersByType(String type){
+
+        List<Stakeholder> stakeholders = new ArrayList<Stakeholder>() ;
+
+        String querySelectAll = "SELECT * FROM " + StakeholderContract.StakeholdersEntry.TABLE_STAKEHOLDERS + " WHERE " + StakeholderContract.StakeholdersEntry.KEY_TYPE+ " = '" + type+ "'" ;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor c = db.rawQuery(querySelectAll, null);
+
+        if(c.moveToFirst()){
+            for(int i=0; i< c.getCount();i++){
+                Stakeholder stakeholder = new Stakeholder();
+                long l = c.getLong(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_ID));
+                Key key = new Key();
+                key.setId(l);
+
+                stakeholder.setId(key);
+                stakeholder.setName(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_NAME)));
+                stakeholder.setType(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_TYPE)));
+                stakeholder.setEmail(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_EMAIL)));
+                stakeholder.setWebsite(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_WEBSITE)));
+                stakeholders.add(stakeholder);
+                c.move(1);
+            }
+
+        }
+
+        return stakeholders;
 
     }
 

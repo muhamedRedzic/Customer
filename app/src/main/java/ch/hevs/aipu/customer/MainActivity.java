@@ -11,7 +11,9 @@ import android.view.View;
 import java.util.List;
 
 import ch.hevs.aipu.AsyncTask.NewsEndpointsAsyncTask;
+import ch.hevs.aipu.AsyncTask.StakeholderEndpointsAsyncTask;
 import ch.hevs.aipu.admin.entity.newsendpoint.model.News;
+import ch.hevs.aipu.AsyncTask.ConferenceEndpointsAsyncTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         new NewsEndpointsAsyncTask(this).execute();
+        new StakeholderEndpointsAsyncTask(this).execute();
+        new ConferenceEndpointsAsyncTask(this).execute();
 
 
     }
