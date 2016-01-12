@@ -112,8 +112,7 @@
                 android:id="@+id/ButtonCalendar"
                 android:drawableTop="@drawable/calenda"
                 android:background="@layout/selector"
-                android:text="Personal Calendar"
-                android:onClick="calendar"/>
+                android:text="Personal Calendar"/>
             </TableRow>
         </TableLayout>
 
@@ -126,7 +125,7 @@
             android:stretchColumns="*">
 
             <TableRow
-                android:id="@+id/fourth_row"
+                android:id="@+id/third_row"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >

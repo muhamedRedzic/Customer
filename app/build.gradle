@@ -26,7 +26,4 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.google.api-client:google-api-client-android:1.19.1'
     compile 'com.google.android.gms:play-services-maps:8.3.0'
-    compile files('libs/aipu-admin-entity-conferenceendpoint-v1-1.21.0-SNAPSHOT.jar')
-    compile files('libs/aipu-admin-entity-newsendpoint-v1-1.21.0-SNAPSHOT.jar')
-    compile files('libs/aipu-admin-entity-stakeholderendpoint-v1-1.21.0-SNAPSHOT.jar')
 }

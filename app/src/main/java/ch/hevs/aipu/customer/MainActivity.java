@@ -11,7 +11,9 @@ import android.view.View;
 import java.util.List;
 
 import ch.hevs.aipu.AsyncTask.NewsEndpointsAsyncTask;
+import ch.hevs.aipu.AsyncTask.StakeholderEndpointsAsyncTask;
 import ch.hevs.aipu.admin.entity.newsendpoint.model.News;
+import ch.hevs.aipu.AsyncTask.ConferenceEndpointsAsyncTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         new NewsEndpointsAsyncTask(this).execute();
+        new StakeholderEndpointsAsyncTask(this).execute();
+        new ConferenceEndpointsAsyncTask(this).execute();
 
 
     }
@@ -90,14 +94,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void organizers(View view) {
         Intent intent = new Intent(this, OrganizersActivity.class);
-        startActivity(intent);
-    }
-
-    public void calendar(View view)
-    {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setType("vnd.android.cursor.item/event");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
         startActivity(intent);
     }
 }
