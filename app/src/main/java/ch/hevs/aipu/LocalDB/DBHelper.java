@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.google.api.client.util.DateTime;
 
@@ -72,6 +73,8 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(ConferenceContract.ConferenceEntry.KEY_ROOM, conference.getRoom());
         values.put(ConferenceContract.ConferenceEntry.KEY_START, conference.getStart().toString());
         values.put(ConferenceContract.ConferenceEntry.KEY_END, conference.getEnd().toString());
+        values.put(ConferenceContract.ConferenceEntry.KEY_WEBSITE, conference.getWebsite());
+
 
 
         db.insert(ConferenceContract.ConferenceEntry.TABLE_CONFERENCE, null, values);
@@ -84,17 +87,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void addStakeholder(Stakeholder stakeholder) {
 
-       /* List<Key> conferences = stakeholder.getConferences();
+        List<Key> conferences = stakeholder.getConferences();
 
-        String listIntoString = null;
+        String listIntoString = "";
         //Log.i("string", conferences.get(0).getId().toString());
         if(conferences!=null) {
             for (Key k : conferences) {
 
-                listIntoString = listIntoString + k.getId().toString() + ", ";
+                listIntoString = listIntoString + k.getId().toString() + ",";
             }
         }
-*/
+
         //Log.i("string", listIntoString);
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -106,7 +109,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(StakeholderContract.StakeholdersEntry.KEY_TYPE,stakeholder.getType() );
         values.put(StakeholderContract.StakeholdersEntry.KEY_EMAIL,stakeholder.getEmail());
         values.put(StakeholderContract.StakeholdersEntry.KEY_WEBSITE,stakeholder.getWebsite() );
-        //values.put(StakeholderContract.StakeholdersEntry.KEY_CONFERENCES, listIntoString);
+        values.put(StakeholderContract.StakeholdersEntry.KEY_CONFERENCES, listIntoString);
 
 
         db.insert(StakeholderContract.StakeholdersEntry.TABLE_STAKEHOLDERS, null, values);
@@ -223,6 +226,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 conf.setStart(new DateTime(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_START))));
                 conf.setEnd(new DateTime(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_END))));
 
+
                 conferences.add(conf);
                 c.move(1);
             }
@@ -257,6 +261,25 @@ public class DBHelper extends SQLiteOpenHelper {
                 stakeholder.setType(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_TYPE)));
                 stakeholder.setEmail(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_EMAIL)));
                 stakeholder.setWebsite(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_WEBSITE)));
+
+                String keyString = c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_CONFERENCES));
+
+                List<Key> keyList = new ArrayList<Key>();
+
+                String[] keyArray = keyString.split(",");
+
+                for (String s:keyArray ) {
+
+                    Key k = new Key();
+                    k.setId(Long.parseLong(s));
+                    keyList.add(k);
+                    Log.i("string", s);
+
+                }
+                Log.i("string", "end");
+
+                stakeholder.setConferences(keyList);
+
                 stakeholders.add(stakeholder);
                 c.move(1);
             }

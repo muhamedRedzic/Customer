@@ -21,6 +21,8 @@ public class ConferenceContract {
         public static final String KEY_ROOM = "Room";
         public static final String KEY_START = "StartTime";
         public static final String KEY_END = "EndTime";
+        public static final String KEY_WEBSITE = "Website";
+        public static final String KEY_STAKEHOLDERS = "Stakeholders";
 
 
 
@@ -32,7 +34,9 @@ public class ConferenceContract {
                 + KEY_TITLE + " TEXT NOT NULL, "
                 + KEY_ROOM + " TEXT NOT NULL, "
                 + KEY_START + " TEXT NOT NULL, "
-                + KEY_END + " TEXT NOT NULL);";
+                + KEY_END + " TEXT NOT NULL ,"
+                + KEY_WEBSITE + " TEXT ,"
+                + KEY_STAKEHOLDERS + " TEXT );";
     }
 
 }

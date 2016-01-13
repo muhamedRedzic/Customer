@@ -10,10 +10,10 @@ import android.view.View;
 
 import java.util.List;
 
-import ch.hevs.aipu.AsyncTask.NewsEndpointsAsyncTask;
-import ch.hevs.aipu.admin.entity.newsendpoint.model.News;
 import ch.hevs.aipu.AsyncTask.ConferenceEndpointsAsyncTask;
+import ch.hevs.aipu.AsyncTask.NewsEndpointsAsyncTask;
 import ch.hevs.aipu.AsyncTask.StakeholderEndpointsAsyncTask;
+import ch.hevs.aipu.admin.entity.newsendpoint.model.News;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         new NewsEndpointsAsyncTask(this).execute();
         new ConferenceEndpointsAsyncTask(this).execute();
         new StakeholderEndpointsAsyncTask(this).execute();
+
+//        DBHelper db = new DBHelper(this);
+//        List<Stakeholder> stake = db.getListStakeholdersByType("speaker");
+//        Stakeholder st = stake.get(1);
+//
+//        List<Key> keyList = st.getConferences();
+//        for (Key k:keyList) {
+//            Log.i("result", k.getId().toString());
+//        }
 
     }
 
