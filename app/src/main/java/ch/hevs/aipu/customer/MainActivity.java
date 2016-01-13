@@ -13,6 +13,7 @@ import java.util.List;
 import ch.hevs.aipu.AsyncTask.ConferenceEndpointsAsyncTask;
 import ch.hevs.aipu.AsyncTask.NewsEndpointsAsyncTask;
 import ch.hevs.aipu.AsyncTask.StakeholderEndpointsAsyncTask;
+import ch.hevs.aipu.LocalDB.DBHelper;
 import ch.hevs.aipu.admin.entity.newsendpoint.model.News;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         new ConferenceEndpointsAsyncTask(this).execute();
         new StakeholderEndpointsAsyncTask(this).execute();
 
-//        DBHelper db = new DBHelper(this);
+        DBHelper db = new DBHelper(this);
 //        List<Stakeholder> stake = db.getListStakeholdersByType("speaker");
 //        Stakeholder st = stake.get(1);
 //
@@ -37,7 +38,16 @@ public class MainActivity extends AppCompatActivity {
 //        for (Key k:keyList) {
 //            Log.i("result", k.getId().toString());
 //        }
-
+//        List<Conference> conf = db.getListConference();
+//        for (Conference c:conf ) {
+//            Log.i("conf",c.getTitle());
+//
+//        }
+//        Conference c = conf.get(0);
+//        List<Key> key = c.getStakeholders();
+//        for (Key k:key) {
+//            Log.i("result", k.getId().toString());
+//        }
     }
 
     @Override

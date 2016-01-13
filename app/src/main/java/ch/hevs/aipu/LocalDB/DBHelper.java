@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.google.api.client.util.DateTime;
 
@@ -64,6 +63,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void addConference(Conference conference) {
 
+
+
+        List<ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key> stakeholders = conference.getStakeholders();
+
+        String listIntoString = "";
+        //Log.i("string", conferences.get(0).getId().toString());
+        if(stakeholders!=null) {
+            for (ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key k : stakeholders) {
+
+                listIntoString = listIntoString + k.getId().toString() + ",";
+            }
+        }
+
         SQLiteDatabase db = this.getWritableDatabase();
 
 
@@ -74,6 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(ConferenceContract.ConferenceEntry.KEY_START, conference.getStart().toString());
         values.put(ConferenceContract.ConferenceEntry.KEY_END, conference.getEnd().toString());
         values.put(ConferenceContract.ConferenceEntry.KEY_WEBSITE, conference.getWebsite());
+        values.put(ConferenceContract.ConferenceEntry.KEY_STAKEHOLDERS,listIntoString);
 
 
 
@@ -216,16 +229,37 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if(c.moveToFirst()){
             for(int i=0; i< c.getCount();i++){
+
                 Conference conf = new Conference();
+
                 Long l = c.getLong(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_ID));
                 ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key k = new ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key();
                 k.setId(l);
+
                 conf.setId(k);
                 conf.setTitle(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_TITLE)));
                 conf.setRoom(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_ROOM)));
                 conf.setStart(new DateTime(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_START))));
                 conf.setEnd(new DateTime(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_END))));
+                conf.setWebsite(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_WEBSITE)));
 
+                String keyString = c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_STAKEHOLDERS));
+
+                List<ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key> keyList = new ArrayList<ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key>();
+
+                String[] keyArray = keyString.split(",");
+
+                for (String s:keyArray ) {
+
+                    ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key k1 = new ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key();
+                    k1.setId(Long.parseLong(s));
+                    keyList.add(k1);
+                    //Log.i("string", s);
+
+                }
+               // Log.i("string", "end");
+
+                conf.setStakeholders(keyList);
 
                 conferences.add(conf);
                 c.move(1);
@@ -273,10 +307,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     Key k = new Key();
                     k.setId(Long.parseLong(s));
                     keyList.add(k);
-                    Log.i("string", s);
+                    //Log.i("string", s);
 
                 }
-                Log.i("string", "end");
+                //Log.i("string", "end");
 
                 stakeholder.setConferences(keyList);
 
@@ -296,7 +330,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         for (News n : news) {
 
-           // Log.i("check", "Name: " + n.getId());
+            // Log.i("check", "Name: " + n.getId());
             if(id==n.getId().longValue())
                 return false;
 
