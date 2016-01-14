@@ -15,7 +15,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.api.client.util.DateTime;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import ch.hevs.aipu.admin.entity.conferenceendpoint.model.Conference;
 import ch.hevs.aipu.customer.R;
@@ -47,17 +51,24 @@ public class ConferenceAdapter extends ArrayAdapter<Conference> {
         } else {
             holder = (ConferenceHolder) row.getTag();
         }
-        Conference conference = data.get(position);
+        final Conference conference = data.get(position);
         holder.textTitle.setText(conference.getTitle());
         final ConferenceHolder finalHolder = holder;
         holder.btnAddCalendar.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+                Calendar start = Calendar.getInstance();
+                start.setTime(new Date(conference.getStart().getValue()));
+                Calendar end = Calendar.getInstance();
+                end.setTime(new Date(conference.getEnd().getValue()));
                 Intent intent = new Intent(Intent.ACTION_EDIT);
                 intent.setType("vnd.android.cursor.item/event");
                 intent.putExtra(CalendarContract.Events.ALL_DAY, false);
-                intent.putExtra(CalendarContract.Events.TITLE, finalHolder.textTitle.getText());
+                intent.putExtra(CalendarContract.Events.TITLE, conference.getTitle());
+                intent.putExtra("beginTime", start.getTimeInMillis());
+                intent.putExtra("endTime", end.getTimeInMillis());
+                intent.putExtra(CalendarContract.Events.DESCRIPTION, "Conference : " + conference.getTitle() + "\n" + "Room : " + conference.getRoom());
+                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "UNIL");
                 context.startActivity(intent);
             }
         });
