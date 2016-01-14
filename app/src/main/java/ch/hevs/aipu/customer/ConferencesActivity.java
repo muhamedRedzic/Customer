@@ -11,7 +11,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import ch.hevs.aipu.LocalDB.DBHelper;
 import ch.hevs.aipu.adapters.ConferenceAdapter;
 import ch.hevs.aipu.admin.entity.conferenceendpoint.model.Conference;
 
@@ -27,10 +29,9 @@ public class ConferencesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //add test conferences
-        conferences.add(new Conference().setTitle("Title 1"));
-        conferences.add(new Conference().setTitle("Title 2"));
-        conferences.add(new Conference().setTitle("Title 3"));
+        DBHelper dbHelper = new DBHelper(this);
+        conferences = (ArrayList<Conference>) dbHelper.getListConference();
+        dbHelper.close();
 
         //set item into adapter
         conferenceAdapter = new ConferenceAdapter(ConferencesActivity.this, R.layout.conferencesrow,conferences);
