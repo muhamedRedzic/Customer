@@ -2,6 +2,7 @@ package ch.hevs.aipu.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;

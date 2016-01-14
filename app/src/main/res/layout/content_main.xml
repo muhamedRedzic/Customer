@@ -171,7 +171,7 @@
                         android:layout_width="150dp"
                         android:layout_height="100dp"
                         android:id="@+id/ButtonShare"
-                        android:drawableTop="@drawable/cloud"
+                        android:drawableTop="@drawable/share"
                         android:background="@layout/selector"
                         android:onClick="share"
                         android:text="Share" />

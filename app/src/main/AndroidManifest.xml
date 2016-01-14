@@ -8,7 +8,9 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <user-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
@@ -112,6 +114,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.hevs.aipu.customer.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ConferenceDetailsActivity"
+            android:label="@string/title_activity_conference_details"
+            android:parentActivityName=".ConferencesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aipu.customer.ConferencesActivity" />
         </activity>
     </application>
 
