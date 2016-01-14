@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_share) {
             return true;
         }
 
@@ -78,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         menu.clear();
         onCreateOptionsMenu(menu);
+    }
+
+    public void share(MenuItem item) {
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AIPU 2016");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, "https://aipu2016.wordpress.com/");
+        startActivity(Intent.createChooser(intent, "Share " + getResources().getText(R.string.app_name) + " on..."));
     }
 
     public void news(View view) {
