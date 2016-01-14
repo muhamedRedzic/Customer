@@ -65,6 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void addConference(Conference conference) {
 
         SQLiteDatabase db = this.getWritableDatabase();
+        List<ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key> stakeholders = conference.getStakeholders();
 
 
         ContentValues values = new ContentValues();
@@ -74,7 +75,16 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(ConferenceContract.ConferenceEntry.KEY_START, conference.getStart().toString());
         values.put(ConferenceContract.ConferenceEntry.KEY_END, conference.getEnd().toString());
         values.put(ConferenceContract.ConferenceEntry.KEY_WEBSITE, conference.getWebsite());
+        //create string of keys
+        String listIntoString = "";
+        //Log.i("string", conferences.get(0).getId().toString());
+        if(stakeholders!=null) {
+            for (ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key k : stakeholders) {
 
+                listIntoString = listIntoString + k.getId().toString() + ",";
+            }
+            values.put(ConferenceContract.ConferenceEntry.KEY_STAKEHOLDERS, listIntoString);
+        }
 
 
         db.insert(ConferenceContract.ConferenceEntry.TABLE_CONFERENCE, null, values);
@@ -102,7 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         String listIntoString = "";
-        //Log.i("string", conferences.get(0).getId().toString());
+        //Log.i("XXXXXXXXXXXXXXXXXXXXX", conferences.get(0).getId().toString());
         if(conferences!=null) {
             for (Key k : conferences) {
 
@@ -225,12 +235,23 @@ public class DBHelper extends SQLiteOpenHelper {
                 conf.setStart(new DateTime(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_START))));
                 conf.setEnd(new DateTime(c.getString(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_END))));
 
+                if (!ConferenceContract.ConferenceEntry.KEY_STAKEHOLDERS.equals("Stakeholders")){
+                    List<ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key> keys = new ArrayList<>();
+                    String[] stringKeys = ConferenceContract.ConferenceEntry.KEY_STAKEHOLDERS.split(",");
+                    for (String stakeholderKey:stringKeys){
+                        ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key key = new ch.hevs.aipu.admin.entity.conferenceendpoint.model.Key();
+                        key.setId(Long.parseLong(stakeholderKey));
+                        keys.add(key);
+                    }
+                    conf.setStakeholders(keys);
+                }
 
                 conferences.add(conf);
                 c.move(1);
             }
 
         }
+        c.close();
 
         return conferences;
 
@@ -242,14 +263,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
         List<Stakeholder> stakeholders = new ArrayList<Stakeholder>() ;
 
-        String querySelectAll = "SELECT * FROM " + StakeholderContract.StakeholdersEntry.TABLE_STAKEHOLDERS + " WHERE " + StakeholderContract.StakeholdersEntry.KEY_TYPE+ " = '" + type+ "'" ;
+        String querySelectAll = "SELECT * FROM " + StakeholderContract.StakeholdersEntry.TABLE_STAKEHOLDERS + " WHERE " + StakeholderContract.StakeholdersEntry.KEY_TYPE + " = '" + type + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor c = db.rawQuery(querySelectAll, null);
-        if(c.moveToFirst()){
+        if (c.moveToFirst()) {
             Log.i("cursor", "hello");
-            for(int i=0; i< c.getCount();i++){
+            for(int i = 0; i < c.getCount(); i++) {
                 Stakeholder stakeholder = new Stakeholder();
                 long l = c.getLong(c.getColumnIndex(ConferenceContract.ConferenceEntry.KEY_ID));
                 Key key = new Key();
@@ -297,7 +318,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         for (News n : news) {
 
-           // Log.i("check", "Name: " + n.getId());
+            // Log.i("check", "Name: " + n.getId());
             if(id==n.getId().longValue())
                 return false;
 

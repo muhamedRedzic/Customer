@@ -10,5 +10,5 @@
     <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_partners">Partners</string>
     <string name="title_activity_organizers">Organizers</string>
-    <string name="title_activity_conference_details">ConferenceDetailsActivity</string>
+    <string name="title_activity_conference_details">Conference Details</string>
 </resources>
