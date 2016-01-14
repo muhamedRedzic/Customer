@@ -22,8 +22,7 @@ public class ConferenceAdapter extends ArrayAdapter<Conference> {
     int layoutResourceId;
     ArrayList<Conference> data = new ArrayList<Conference>();
 
-    public ConferenceAdapter(Context context, int layoutResourceId,
-                             ArrayList<Conference> data) {
+    public ConferenceAdapter(Context context, int layoutResourceId, ArrayList<Conference> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;

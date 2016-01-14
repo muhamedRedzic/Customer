@@ -115,11 +115,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void calendar(View view)
-    {
+    public void calendar(View view) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setType("vnd.android.cursor.item/event");
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
         startActivity(intent);
+    }
+
+    public void share(View view){
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AIPU 2016");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT,"https://aipu2016.wordpress.com/");
+        startActivity(Intent.createChooser(intent, "Share " + getResources().getText(R.string.app_name) + " on..."));
     }
 }

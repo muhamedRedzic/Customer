@@ -26,6 +26,7 @@ public class NewsActivity extends AppCompatActivity {
         //fill list from DB
         DBHelper dbHelper = new DBHelper(this);
         newsList = dbHelper.getListNews();
+        dbHelper.close();
 
         //fill string list with news
         List<String> names = new ArrayList<String>(newsList.size());
