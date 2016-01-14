@@ -261,30 +261,32 @@ public class DBHelper extends SQLiteOpenHelper {
                 stakeholder.setEmail(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_EMAIL)));
                 stakeholder.setWebsite(c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_WEBSITE)));
 
-//                String keyString = c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_CONFERENCES));
-//
-//                List<Key> keyList = new ArrayList<Key>();
-//
-//                String[] keyArray = keyString.split(",");
-//
-//                for (String s:keyArray ) {
-//
-//                    Key k = new Key();
-//                    k.setId(Long.parseLong(s));
-//                    keyList.add(k);
-//                    Log.i("string", s);
-//
-//                }
-//                Log.i("string", "end");
-//
-//                stakeholder.setConferences(keyList);
+                if(type.equals("speaker")){
+                    String keyString = c.getString(c.getColumnIndex(StakeholderContract.StakeholdersEntry.KEY_CONFERENCES));
+
+                    List<Key> keyList = new ArrayList<Key>();
+
+                    String[] keyArray = keyString.split(",");
+
+                    for (String s:keyArray ) {
+
+                        Key k = new Key();
+                        k.setId(Long.parseLong(s));
+                        keyList.add(k);
+                        Log.i("string", s);
+
+                    }
+                    Log.i("string", "end");
+
+                    stakeholder.setConferences(keyList);
+                }
 
                 stakeholders.add(stakeholder);
                 c.move(1);
             }
 
         }
-        Log.i("STAKEHOLDERS::::::::", String.valueOf(stakeholders.size()));
+        c.close();
         return stakeholders;
 
     }
